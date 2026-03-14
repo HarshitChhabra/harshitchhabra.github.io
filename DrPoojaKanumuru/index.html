@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Pooja Kanumuru | Consultant Dermatologist & Aesthetic Specialist</title>
+  <meta name="description" content="Dr. Pooja Kanumuru, MD - Gold Medalist Consultant Dermatologist, Dermatosurgeon & Aesthetic Specialist. Apollo Clinic & Manipal Hospitals. Book your consultation today.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            slate: { 800: '#2D3748', 700: '#374151', 600: '#4A5568', 900: '#1A202C' },
+            sage: { 50: '#F0F5F3', 100: '#E0EBE7', 200: '#C1D7CF', 300: '#93BAA9', 400: '#659C83', 500: '#4A8068', 600: '#3D6A56', 700: '#325647', 800: '#2B4539', 900: '#243A30' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Playfair Display', 'Georgia', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .font-display { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* Subtle fade-in on scroll */
+    .fade-section { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+    /* Treatment card image */
+    .treatment-img { transition: transform 0.4s ease; }
+    .treatment-card:hover .treatment-img { transform: scale(1.03); }
+
+    /* Doctor gallery overlay */
+    .doc-overlay { opacity: 0; transition: opacity 0.3s ease; }
+    .doc-card:hover .doc-overlay { opacity: 1; }
+
+    /* Gallery hover expand */
+    .doc-card {
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, z-index 0s;
+    }
+    .doc-card:hover {
+      transform: scale(1.35);
+      z-index: 30;
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Wide images: show full picture on hover */
+    .doc-card--wide img {
+      transition: object-fit 0s, object-position 0.35s ease;
+    }
+    .doc-card--wide:hover {
+      aspect-ratio: auto;
+    }
+    .doc-card--wide:hover img {
+      object-fit: contain;
+      background: #1A202C;
+    }
+
+    /* Nav blur */
+    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f7f7f7; }
+    ::-webkit-scrollbar-thumb { background: #93BAA9; border-radius: 3px; }
+
+    /* WhatsApp FAB pulse */
+    @keyframes fab-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); } 50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); } }
+    .fab-pulse { animation: fab-pulse 2.5s infinite; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+  <!-- ========================================================================
+       ASSET MANAGER — Configure your folders and filenames here.
+       All paths are relative to ../  (the parent directory of /website/)
+       ======================================================================== -->
+  <script>
+    const AssetManager = {
+      basePath: '../',
+      docImagesDir: 'docimages',
+      whatsappNumber: '918310902736',
+      youtubeUrl: 'https://www.youtube.com/@glowgeous_skin',
+      instagramUrl: 'https://www.instagram.com/glowgeous_skin?igshid=YmMyMTA2M2Y=',
+
+      // Doctor images — file is the filename, caption is the professional display text
+      doctorImages: [
+        { file: 'headshot.png', caption: 'Dr. Pooja Kanumuru' },
+        { file: 'Doc giving a talk at ACSI Hair transplant focus forum.png', caption: 'Speaker, ACSI Hair Transplant Focus Forum' },
+        { file: 'Doc giving a talk at Lotus Professional 2.png', caption: 'Invited Faculty, Lotus Professional Seminar' },
+        { file: 'Doc giving a talk at Lotus Professional DermaSage Advanced Pro Skincare.png', caption: 'Presenting at Lotus Professional DermaSage Advanced Pro Skincare', wide: true },
+        { file: 'Doc giving a talk in Dr Reddy Derma  Academy 2024.png', caption: 'Faculty Speaker, Dr. Reddy\'s Derma Academy 2024' },
+      ],
+
+      // Treatments — folder name becomes the title.
+      // image: 'Enhanced.png' if it exists, otherwise first available image.
+      // description: extracted from Info file (pasted here for static serving).
+      treatments: [
+        {
+          folder: 'Alopecia Areata',
+          image: 'Enhanced.png',
+          description: 'Losing patches of hair suddenly can be distressing, but early clinical intervention is the key to effective regrowth. Under the direction of Dr. Pooja Kanumuru, we employ a multi-modal approach — pharmacotherapy, medical-grade injectables, lasers, and light therapy — to restore hair density and follicle health.',
+        },
+        {
+          folder: 'Eyebrow Microblading',
+          image: 'Enhanced.png',
+          description: 'Enhance your natural features with precision microblading designed to shape and define your brows according to your unique aesthetic goals. This professional procedure offers a long-term alternative to daily cosmetic maintenance, providing effortless, perfectly sculpted results.',
+        },
+        {
+          folder: 'Lip Pigmentation - Q switch laser',
+          image: 'Enhanced.png',
+          description: 'Achieve a uniform, naturally healthy appearance with high-end Q-Switch ND:YAG laser technology. This specialized clinical protocol precisely targets deep pigmentation to restore even lip tone with medical-grade precision.',
+        },
+        {
+          folder: 'Melasma',
+          image: 'Enhanced.png',
+          description: 'Melasma requires a sophisticated, clinical approach to achieve sustainable results. Dr. Pooja Kanumuru provides tailored protocols combining medical-grade topicals, oral therapies, and advanced procedures to effectively manage complex pigmentation and restore skin clarity.',
+        },
+        {
+          folder: 'Ingrown toenail surgery',
+          image: 'Enhanced.png',
+          description: 'Chronic ingrown toenails require timely clinical intervention to prevent complications like infection and permanent nail damage. Our surgical procedures provide a permanent solution to recurring pain with minimal downtime, restoring full mobility and comfort.',
+        },
+        {
+          folder: 'Keloids',
+          image: 'Enhanced.png',
+          description: 'Keloids are raised, thickened scars that can grow in size, cause discomfort, and affect confidence. Treatment modalities include topical creams, intralesional injections, laser therapy, and surgical excision — personalized to your unique case by Dr. Pooja Kanumuru.',
+        },
+        {
+          folder: 'Ear Lobe tear repair surgery',
+          image: 'Enhanced.png',
+          description: 'Torn or stretched earlobes from heavy earrings or trauma? A simple, effective correction with precision suturing by Dr. Pooja Kanumuru delivers natural-looking results, restoring shape and allowing re-piercing after healing.',
+        },
+        {
+          folder: 'Vitilogi treatment',
+          image: 'Enhanced.png',
+          description: 'Comprehensive vitiligo management including scientifically approved medications (oral & topical), targeted phototherapy, and surgical options when required — all tailored to achieve optimal repigmentation.',
+        },
+        {
+          folder: 'Wart removal',
+          image: 'Enhanced.png',
+          description: 'Safe, effective wart removal performed via radiofrequency or advanced laser technology, ensuring minimal scarring and rapid recovery under expert dermatological care.',
+        },
+      ],
+
+      // Helpers
+      getDocImagePath(entry) {
+        const file = typeof entry === 'string' ? entry : entry.file;
+        return `${this.basePath}${this.docImagesDir}/${file}`;
+      },
+      getTreatmentImagePath(treatment) {
+        if (!treatment.image) return null;
+        return `${this.basePath}${encodeURIComponent(treatment.folder)}/${encodeURIComponent(treatment.image)}`;
+      },
+      getWhatsAppLink(message) {
+        const msg = message || 'Hello Dr. Pooja, I would like to book a consultation.';
+        return `https://wa.me/${this.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+      },
+    };
+  </script>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 nav-blur bg-white/90 border-b border-sage-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-full bg-sage-500 flex items-center justify-center">
+            <span class="text-white font-display font-bold text-sm">PK</span>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-sm font-semibold text-slate-800 tracking-tight">Dr. Pooja Kanumuru</span>
+            <span class="block text-[10px] uppercase tracking-[0.15em] text-sage-600 font-medium">Dermatology &middot; Aesthetics</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#about" class="text-sm font-medium text-slate-600 hover:text-sage-600 transition-colors">About</a>
+          <a href="#treatments" class="text-sm font-medium text-slate-600 hover:text-sage-600 transition-colors">Treatments</a>
+          <a href="#gallery" class="text-sm font-medium text-slate-600 hover:text-sage-600 transition-colors">Gallery</a>
+          <a href="#connect" class="text-sm font-medium text-slate-600 hover:text-sage-600 transition-colors">Connect</a>
+          <a id="nav-cta" href="#" class="inline-flex items-center gap-2 bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.25 0-4.354-.658-6.13-1.793l-.44-.27-2.633.883.883-2.633-.27-.44A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Book Consultation
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-sage-50 transition-colors" aria-label="Menu">
+          <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4 border-t border-sage-100 mt-2 pt-4">
+        <div class="flex flex-col gap-3">
+          <a href="#about" class="mobile-nav-link text-sm font-medium text-slate-600 hover:text-sage-600 py-2 transition-colors">About</a>
+          <a href="#treatments" class="mobile-nav-link text-sm font-medium text-slate-600 hover:text-sage-600 py-2 transition-colors">Treatments</a>
+          <a href="#gallery" class="mobile-nav-link text-sm font-medium text-slate-600 hover:text-sage-600 py-2 transition-colors">Gallery</a>
+          <a href="#connect" class="mobile-nav-link text-sm font-medium text-slate-600 hover:text-sage-600 py-2 transition-colors">Connect</a>
+          <a id="mobile-cta" href="#" class="inline-flex items-center justify-center gap-2 bg-sage-600 hover:bg-sage-700 text-white text-sm font-medium px-5 py-3 rounded-full transition-colors mt-2">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.25 0-4.354-.658-6.13-1.793l-.44-.27-2.633.883.883-2.633-.27-.44A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Book on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="relative min-h-screen flex items-center bg-gradient-to-br from-sage-50 via-white to-sage-50/50 pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Text -->
+        <div class="order-2 lg:order-1">
+          <div class="inline-flex items-center gap-2 bg-sage-100 text-sage-700 text-xs font-semibold uppercase tracking-[0.15em] px-4 py-2 rounded-full mb-8">
+            <span class="w-1.5 h-1.5 bg-sage-500 rounded-full"></span>
+            Apollo Clinic &middot; Manipal Hospitals
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.1] mb-6">
+            Dr. Pooja<br>
+            <span class="text-sage-600">Kanumuru</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-600 font-light leading-relaxed mb-4 max-w-lg">
+            Consultant Dermatologist, Dermatosurgeon<br class="hidden sm:block"> &amp; Aesthetic Specialist
+          </p>
+
+          <div class="flex flex-wrap gap-3 text-xs font-medium text-slate-500 mb-10">
+            <span class="bg-white border border-sage-200 px-3 py-1.5 rounded-full">MD Dermatology <span class="text-sage-600">(Gold Medalist)</span></span>
+            <span class="bg-white border border-sage-200 px-3 py-1.5 rounded-full">MBBS</span>
+            <span class="bg-white border border-sage-200 px-3 py-1.5 rounded-full">FRGUHS Aesthetic Derm</span>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <a id="hero-cta" href="#" class="inline-flex items-center gap-2.5 bg-sage-600 hover:bg-sage-700 text-white font-medium px-7 py-3.5 rounded-full transition-colors shadow-lg shadow-sage-600/20">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.25 0-4.354-.658-6.13-1.793l-.44-.27-2.633.883.883-2.633-.27-.44A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              Book Consultation
+            </a>
+            <a href="#treatments" class="inline-flex items-center gap-2 border-2 border-sage-200 hover:border-sage-400 text-slate-700 font-medium px-7 py-3.5 rounded-full transition-colors">
+              View Treatments
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Headshot -->
+        <div class="order-1 lg:order-2 flex justify-center">
+          <div class="relative">
+            <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px] rounded-2xl overflow-hidden shadow-2xl shadow-sage-900/10 border border-sage-100">
+              <img id="hero-headshot" src="" alt="Dr. Pooja Kanumuru - Consultant Dermatologist" class="w-full h-full object-cover object-top">
+            </div>
+            <!-- Accent card -->
+            <div class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white rounded-xl shadow-lg border border-sage-100 px-5 py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-sage-100 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div class="leading-tight">
+                  <span class="block text-xs font-semibold text-slate-800">WCD Rising Star 2023</span>
+                  <span class="block text-[10px] text-slate-500">World Congress of Dermatology</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 text-sage-400">
+      <span class="text-[10px] uppercase tracking-[0.2em] font-medium">Scroll</span>
+      <div class="w-px h-8 bg-sage-300"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="py-24 lg:py-32 bg-white fade-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section header -->
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-sage-500 mb-4 block">About the Doctor</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          Where clinical excellence<br class="hidden sm:block"> meets aesthetic artistry
+        </h2>
+        <p class="text-lg text-slate-500 leading-relaxed">
+          Dr. Pooja Kanumuru brings together rigorous evidence-based dermatology with an artistic eye for natural-looking aesthetic enhancements &mdash; delivering outcomes that are both medically sound and visually transformative.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <!-- Credentials -->
+        <div class="bg-sage-50/60 rounded-2xl p-8 lg:p-10 border border-sage-100">
+          <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-800 mb-4">Academic Excellence</h3>
+          <ul class="space-y-3 text-sm text-slate-600 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">MD Dermatology</strong> &mdash; Gold Medalist</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">MBBS</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">FRGUHS Fellowship</strong> in Aesthetic Dermatology</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Affiliations & Awards -->
+        <div class="bg-sage-50/60 rounded-2xl p-8 lg:p-10 border border-sage-100">
+          <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0016.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.023 6.023 0 01-2.77.704 6.023 6.023 0 01-2.77-.704"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-800 mb-4">Recognition &amp; Affiliations</h3>
+          <ul class="space-y-3 text-sm text-slate-600 leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">Apollo Clinic</strong> &amp; <strong class="text-slate-700">Manipal Hospitals</strong></span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">WCD Rising Star Scholarship</strong> &mdash; 2023</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 bg-sage-400 rounded-full mt-1.5 flex-shrink-0"></span>
+              <span><strong class="text-slate-700">ACSICON Presidential Appreciation Award</strong> &mdash; 2024</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Philosophy -->
+        <div class="bg-sage-50/60 rounded-2xl p-8 lg:p-10 border border-sage-100">
+          <div class="w-12 h-12 bg-sage-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-sage-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-800 mb-4">Clinical Philosophy</h3>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            A dual approach combining evidence-based clinical dermatology with refined aesthetic sensibility.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Acne</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Psoriasis</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Vitiligo</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Botox</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Fillers</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">Lasers</span>
+            <span class="text-[11px] font-medium bg-white text-sage-700 px-2.5 py-1 rounded-full border border-sage-200">GFC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TREATMENTS ===== -->
+  <section id="treatments" class="py-24 lg:py-32 bg-sage-50/40 fade-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-sage-500 mb-4 block">Clinical Portfolio</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          Treatments &amp; procedures
+        </h2>
+        <p class="text-lg text-slate-500 leading-relaxed">
+          Each treatment protocol is personally designed by Dr. Pooja Kanumuru, combining the latest dermatological advances with individualized patient care.
+        </p>
+      </div>
+
+      <div id="treatments-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DOCTOR GALLERY ===== -->
+  <section id="gallery" class="py-24 lg:py-32 bg-white fade-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-sage-500 mb-4 block">Professional Engagements</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          Conferences &amp; academia
+        </h2>
+        <p class="text-lg text-slate-500 leading-relaxed">
+          Advancing dermatological knowledge through active participation in national and international forums.
+        </p>
+      </div>
+
+      <div id="gallery-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL / CONNECT ===== -->
+  <section id="connect" class="py-24 lg:py-32 bg-sage-50/40 fade-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-sage-500 mb-4 block">Stay Connected</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
+          Follow the journey
+        </h2>
+        <p class="text-lg text-slate-500 leading-relaxed">
+          Skin health education, treatment insights, and behind-the-scenes of clinical dermatology.
+        </p>
+      </div>
+
+      <div class="max-w-2xl mx-auto grid sm:grid-cols-2 gap-6">
+        <!-- YouTube -->
+        <a id="youtube-link" href="#" target="_blank" rel="noopener" class="group bg-white rounded-2xl p-8 border border-sage-100 hover:border-sage-300 transition-all hover:shadow-lg hover:shadow-sage-100/50">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center group-hover:bg-red-100 transition-colors">
+              <svg class="w-7 h-7 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-slate-800 text-base">YouTube</h3>
+              <p class="text-sm text-slate-500">@glowgeous_skin</p>
+            </div>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed">Educational videos on skin health, treatment procedures, and dermatology insights.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-medium text-sage-600 group-hover:text-sage-700 transition-colors">
+            Watch now
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a id="instagram-link" href="#" target="_blank" rel="noopener" class="group bg-white rounded-2xl p-8 border border-sage-100 hover:border-sage-300 transition-all hover:shadow-lg hover:shadow-sage-100/50">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="w-14 h-14 bg-pink-50 rounded-xl flex items-center justify-center group-hover:bg-pink-100 transition-colors">
+              <svg class="w-7 h-7 text-pink-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-slate-800 text-base">Instagram</h3>
+              <p class="text-sm text-slate-500">@glowgeous_skin</p>
+            </div>
+          </div>
+          <p class="text-sm text-slate-500 leading-relaxed">Before &amp; after transformations, skincare tips, and clinical highlights.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm font-medium text-sage-600 group-hover:text-sage-700 transition-colors">
+            Follow
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-slate-900 text-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-9 h-9 rounded-full bg-sage-500 flex items-center justify-center">
+              <span class="text-white font-display font-bold text-sm">PK</span>
+            </div>
+            <span class="font-semibold text-white">Dr. Pooja Kanumuru</span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-xs">
+            Consultant Dermatologist, Dermatosurgeon &amp; Aesthetic Specialist. Evidence-based care, natural-looking results.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-5">Navigation</h4>
+          <ul class="space-y-3">
+            <li><a href="#about" class="text-sm text-slate-300 hover:text-sage-300 transition-colors">About</a></li>
+            <li><a href="#treatments" class="text-sm text-slate-300 hover:text-sage-300 transition-colors">Treatments</a></li>
+            <li><a href="#gallery" class="text-sm text-slate-300 hover:text-sage-300 transition-colors">Gallery</a></li>
+            <li><a href="#connect" class="text-sm text-slate-300 hover:text-sage-300 transition-colors">Connect</a></li>
+          </ul>
+        </div>
+
+        <!-- Specializations -->
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-5">Specializations</h4>
+          <ul class="space-y-3">
+            <li class="text-sm text-slate-300">Clinical Dermatology</li>
+            <li class="text-sm text-slate-300">Dermatosurgery</li>
+            <li class="text-sm text-slate-300">Aesthetic Dermatology</li>
+            <li class="text-sm text-slate-300">Laser Treatments</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 mb-5">Get in Touch</h4>
+          <ul class="space-y-3">
+            <li>
+              <a id="footer-wa" href="#" class="text-sm text-slate-300 hover:text-sage-300 transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.25 0-4.354-.658-6.13-1.793l-.44-.27-2.633.883.883-2.633-.27-.44A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a id="footer-yt" href="#" target="_blank" rel="noopener" class="text-sm text-slate-300 hover:text-sage-300 transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                YouTube
+              </a>
+            </li>
+            <li>
+              <a id="footer-ig" href="#" target="_blank" rel="noopener" class="text-sm text-slate-300 hover:text-sage-300 transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500">&copy; 2026 Dr. Pooja Kanumuru. All rights reserved.</p>
+        <p class="text-xs text-slate-500">Apollo Clinic &middot; Manipal Hospitals</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FAB (Mobile Sticky) ===== -->
+  <a id="whatsapp-fab" href="#" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-medium pl-4 pr-5 py-3.5 rounded-full shadow-xl shadow-green-600/30 fab-pulse transition-colors lg:bottom-8 lg:right-8">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.25 0-4.354-.658-6.13-1.793l-.44-.27-2.633.883.883-2.633-.27-.44A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <span class="text-sm hidden sm:inline">Book on WhatsApp</span>
+  </a>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Populate WhatsApp links ──
+      const waLink = AssetManager.getWhatsAppLink();
+      document.getElementById('nav-cta').href = waLink;
+      document.getElementById('mobile-cta').href = waLink;
+      document.getElementById('hero-cta').href = waLink;
+      document.getElementById('whatsapp-fab').href = waLink;
+      document.getElementById('footer-wa').href = waLink;
+
+      // ── Populate social links ──
+      document.getElementById('youtube-link').href = AssetManager.youtubeUrl;
+      document.getElementById('instagram-link').href = AssetManager.instagramUrl;
+      document.getElementById('footer-yt').href = AssetManager.youtubeUrl;
+      document.getElementById('footer-ig').href = AssetManager.instagramUrl;
+
+      // ── Headshot ──
+      document.getElementById('hero-headshot').src = AssetManager.getDocImagePath('headshot.png');
+
+      // ── Build Treatments Grid ──
+      const treatmentsGrid = document.getElementById('treatments-grid');
+      AssetManager.treatments.forEach(function (t) {
+        const imgPath = AssetManager.getTreatmentImagePath(t);
+        const hasImage = !!imgPath;
+
+        const card = document.createElement('div');
+        card.className = 'treatment-card bg-white rounded-2xl overflow-hidden border border-sage-100 hover:border-sage-300 transition-all hover:shadow-lg hover:shadow-sage-100/50 flex flex-col';
+
+        card.innerHTML = (hasImage
+          ? '<div class="aspect-[4/3] overflow-hidden bg-sage-50">' +
+              '<img src="' + imgPath + '" alt="' + t.folder + ' - Before and After" class="treatment-img w-full h-full object-cover" loading="lazy">' +
+            '</div>'
+          : '<div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-sage-50 to-sage-100 flex items-center justify-center">' +
+              '<div class="text-center px-6">' +
+                '<svg class="w-10 h-10 text-sage-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 14.5M14.25 3.104c.251.023.501.05.75.082M19.8 14.5l-2.263 2.263a3 3 0 01-2.12.878H8.584a3 3 0 01-2.12-.878L4.2 14.5m15.6 0l.463.463a2.25 2.25 0 010 3.182L17.25 21.25M4.2 14.5l-.463.463a2.25 2.25 0 000 3.182L6.75 21.25"/></svg>' +
+                '<p class="text-xs text-sage-400 font-medium">Consultation Required</p>' +
+              '</div>' +
+            '</div>'
+        ) +
+        '<div class="p-6 lg:p-7 flex-1 flex flex-col">' +
+          '<h3 class="font-display text-lg font-semibold text-slate-800 mb-3">' + t.folder + '</h3>' +
+          '<p class="text-sm text-slate-500 leading-relaxed flex-1">' + t.description + '</p>' +
+          '<a href="' + AssetManager.getWhatsAppLink('Hi Dr. Pooja, I would like to know more about ' + t.folder + '.') + '" class="inline-flex items-center gap-1.5 text-sm font-medium text-sage-600 hover:text-sage-700 mt-5 transition-colors">' +
+            'Enquire' +
+            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>' +
+          '</a>' +
+        '</div>';
+
+        treatmentsGrid.appendChild(card);
+      });
+
+      // ── Build Doctor Gallery ──
+      const galleryGrid = document.getElementById('gallery-grid');
+      // Skip headshot (index 0), use the conference/talk images
+      AssetManager.doctorImages.slice(1).forEach(function (entry) {
+        const caption = entry.caption;
+        const imgPath = AssetManager.getDocImagePath(entry);
+        const isWide = entry.wide || false;
+
+        const card = document.createElement('div');
+        card.className = 'doc-card relative rounded-2xl overflow-hidden aspect-[3/4] group cursor-default'
+          + (isWide ? ' doc-card--wide bg-slate-900' : '');
+
+        card.innerHTML =
+          '<img src="' + imgPath + '" alt="' + caption + '" class="w-full h-full object-cover" loading="lazy">' +
+          '<div class="doc-overlay absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent flex items-end p-5">' +
+            '<p class="text-white text-sm font-medium leading-snug">' + caption + '</p>' +
+          '</div>';
+
+        galleryGrid.appendChild(card);
+      });
+
+      // ── Mobile Menu Toggle ──
+      var menuOpen = false;
+      var mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var menuIcon = document.getElementById('menu-icon');
+
+      mobileMenuBtn.addEventListener('click', function () {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('hidden', !menuOpen);
+        menuIcon.setAttribute('d', menuOpen
+          ? 'M6 18L18 6M6 6l12 12'
+          : 'M4 6h16M4 12h16M4 18h16'
+        );
+      });
+
+      // Close mobile menu on nav link click
+      document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menuOpen = false;
+          mobileMenu.classList.add('hidden');
+          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        });
+      });
+
+      // ── Scroll Fade-in ──
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-section').forEach(function (el) {
+        observer.observe(el);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
