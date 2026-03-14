@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harshit Chhabra | Premium Websites for Professionals</title>
+  <meta name="description" content="I build beautiful, high-performance websites for doctors, lawyers, and professionals. 6+ years of Big Tech engineering, now working for you.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            warm: { 50: '#FDFBF7', 100: '#FAF5ED', 200: '#F3E8D4', 300: '#E8D5B5', 400: '#D4B896' },
+            navy: { 800: '#1B2A4A', 900: '#0F1D36', 950: '#0A1528' },
+            gold: { 400: '#D4A853', 500: '#C49A3C', 600: '#A67C2E' },
+          },
+          fontFamily: {
+            serif: ['DM Serif Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* Soft card lift */
+    .lift-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .lift-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px -15px rgba(15, 29, 54, 0.12); }
+
+    /* Profession tabs */
+    .prof-tab { transition: all 0.3s ease; }
+    .prof-tab.active { background: #0F1D36; color: #fff; }
+
+    /* Counter */
+    .counter-num { font-variant-numeric: tabular-nums; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #FDFBF7; }
+    ::-webkit-scrollbar-thumb { background: #D4B896; border-radius: 3px; }
+
+    /* Subtle grain overlay */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body class="bg-warm-50 text-navy-900 antialiased">
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="fixed top-0 w-full z-50 bg-warm-50/90 backdrop-blur-lg border-b border-warm-200/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="#hero" class="font-serif text-xl text-navy-900">Harshit Chhabra</a>
+        <div class="hidden md:flex items-center gap-10">
+          <a href="#about" class="text-sm font-medium text-navy-800/60 hover:text-navy-900 transition-colors">About</a>
+          <a href="#who" class="text-sm font-medium text-navy-800/60 hover:text-navy-900 transition-colors">Who I Help</a>
+          <a href="#work" class="text-sm font-medium text-navy-800/60 hover:text-navy-900 transition-colors">Services</a>
+          <a href="#proof" class="text-sm font-medium text-navy-800/60 hover:text-navy-900 transition-colors">Results</a>
+        </div>
+        <button id="mobile-btn" class="md:hidden p-2" aria-label="Menu">
+          <svg class="w-6 h-6 text-navy-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden pb-6 pt-2 border-t border-warm-200">
+        <div class="flex flex-col gap-4">
+          <a href="#about" class="mob-link text-sm text-navy-800/70 hover:text-navy-900 py-1">About</a>
+          <a href="#who" class="mob-link text-sm text-navy-800/70 hover:text-navy-900 py-1">Who I Help</a>
+          <a href="#work" class="mob-link text-sm text-navy-800/70 hover:text-navy-900 py-1">Services</a>
+          <a href="#proof" class="mob-link text-sm text-navy-800/70 hover:text-navy-900 py-1">Results</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="relative pt-32 pb-24 lg:pt-44 lg:pb-36 overflow-hidden grain">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="reveal inline-flex items-center gap-2 bg-navy-900/5 text-navy-800/70 text-xs font-semibold uppercase tracking-[0.18em] px-4 py-2 rounded-full mb-8">
+          <span class="w-1.5 h-1.5 bg-gold-500 rounded-full"></span>
+          Big Tech Engineer by Day &middot; Your Website Builder by Night
+        </div>
+
+        <h1 class="reveal reveal-d1 font-serif text-4xl sm:text-5xl lg:text-6xl text-navy-950 leading-[1.12] mb-8">
+          Your expertise deserves<br>
+          a website that<br>
+          <span class="text-gold-500">proves it.</span>
+        </h1>
+
+        <p class="reveal reveal-d2 text-lg sm:text-xl text-navy-800/60 leading-relaxed max-w-xl mb-6">
+          By day, I build software at one of the world's largest tech companies.
+          By night, I bring that same engineering standard to doctors, lawyers,
+          and professionals who want their online presence to match their
+          real-world reputation.
+        </p>
+        <p class="reveal reveal-d3 text-base text-navy-800/40 max-w-xl italic">
+          No templates. No drag-and-drop builders. A site engineered from scratch
+          to bring you clients, not headaches.
+        </p>
+      </div>
+    </div>
+
+    <!-- Decorative arc -->
+    <div class="absolute -bottom-1 left-0 right-0">
+      <svg viewBox="0 0 1440 80" fill="none" class="w-full"><path d="M0 80V30C360 0 720 0 1080 30C1260 45 1380 60 1440 70V80H0Z" fill="#FDFBF7"/></svg>
+    </div>
+    <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-gold-400/8 via-warm-200/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+  </section>
+
+  <!-- ===== TRUST STRIP ===== -->
+  <section class="py-16 lg:py-20 border-b border-warm-200/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div class="text-center reveal">
+          <div class="counter-num font-serif text-4xl sm:text-5xl text-navy-900 mb-2" data-target="6" data-suffix="+">0</div>
+          <p class="text-sm text-navy-800/50">Years in Big Tech</p>
+        </div>
+        <div class="text-center reveal reveal-d1">
+          <div class="counter-num font-serif text-4xl sm:text-5xl text-navy-900 mb-2" data-target="50" data-suffix="+">0</div>
+          <p class="text-sm text-navy-800/50">Projects Delivered</p>
+        </div>
+        <div class="text-center reveal reveal-d2">
+          <div class="counter-num font-serif text-4xl sm:text-5xl text-navy-900 mb-2" data-target="100" data-suffix="%">0</div>
+          <p class="text-sm text-navy-800/50">Hand-Coded, No Templates</p>
+        </div>
+        <div class="text-center reveal reveal-d3">
+          <div class="font-serif text-4xl sm:text-5xl text-navy-900 mb-2">&lt;2s</div>
+          <p class="text-sm text-navy-800/50">Average Page Load Time</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div class="reveal">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500 mb-4 block">About</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-navy-950 leading-tight mb-8">
+            Big Tech engineer by day.<br>Your website builder<br>
+            <span class="text-gold-500">by night.</span>
+          </h2>
+          <div class="space-y-5 text-navy-800/60 leading-relaxed">
+            <p>
+              For over six years, I've been building software at one of the world's
+              biggest tech companies &mdash; systems that serve millions of people
+              every single day. I know what makes technology fast, reliable,
+              and trustworthy at the highest level.
+            </p>
+            <p>
+              But I noticed something: the professionals I admire most &mdash;
+              the doctors who save lives, the lawyers who fight for justice,
+              the specialists who are genuinely the best at what they do &mdash;
+              had websites that <em>didn't do them justice</em>.
+            </p>
+            <p class="text-navy-900 font-medium">
+              So alongside my day job, I build websites for people like you.
+              Crafted one at a time, with the same engineering rigor I bring to
+              products used by millions.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal reveal-d2">
+          <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm border border-warm-200/80">
+            <h3 class="font-serif text-xl text-navy-900 mb-6">What you get working with me</h3>
+            <ul class="space-y-5">
+              <li class="flex gap-4">
+                <div class="w-10 h-10 bg-warm-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 14.5M14.25 3.104c.251.023.501.05.75.082M19.8 14.5l-2.263 2.263a3 3 0 01-2.12.878H8.584a3 3 0 01-2.12-.878L4.2 14.5"/></svg>
+                </div>
+                <div>
+                  <span class="text-sm font-semibold text-navy-900 block mb-1">Big Tech quality, personal attention</span>
+                  <span class="text-sm text-navy-800/50">You work directly with me. No account managers, no juniors, no runaround.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div class="w-10 h-10 bg-warm-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                </div>
+                <div>
+                  <span class="text-sm font-semibold text-navy-900 block mb-1">Fast, because your time matters</span>
+                  <span class="text-sm text-navy-800/50">Sites load in under 2 seconds. Your patients and clients won't wait around.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div class="w-10 h-10 bg-warm-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+                </div>
+                <div>
+                  <span class="text-sm font-semibold text-navy-900 block mb-1">Beautiful on every screen</span>
+                  <span class="text-sm text-navy-800/50">Most of your visitors are on their phones. Your site will look perfect there too.</span>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div class="w-10 h-10 bg-warm-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                </div>
+                <div>
+                  <span class="text-sm font-semibold text-navy-900 block mb-1">Built to earn trust</span>
+                  <span class="text-sm text-navy-800/50">Your site will look as credible and polished as you are in person.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHO I HELP ===== -->
+  <section id="who" class="py-24 lg:py-32 bg-white relative grain">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500 mb-4 block">Who I Help</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-950 leading-tight mb-6">
+          Websites for professionals<br>who are <span class="text-gold-500">the best</span> at what they do.
+        </h2>
+        <p class="text-lg text-navy-800/50 max-w-2xl mx-auto">
+          You've spent years mastering your craft. Your website should reflect that &mdash; not look
+          like it was thrown together over a weekend.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Doctors -->
+        <div class="lift-card bg-warm-50 rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal">
+          <div class="w-14 h-14 bg-warm-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+          </div>
+          <h3 class="font-serif text-xl text-navy-900 mb-3">Doctors &amp; Clinics</h3>
+          <p class="text-sm text-navy-800/50 leading-relaxed mb-5">
+            Dermatologists, surgeons, dentists, pediatricians &mdash; your patients Google you before they book.
+            Give them a reason to choose you.
+          </p>
+          <ul class="space-y-2 text-sm text-navy-800/60">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Treatment showcases</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Before &amp; after galleries</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> WhatsApp &amp; booking integration</li>
+          </ul>
+        </div>
+
+        <!-- Lawyers -->
+        <div class="lift-card bg-warm-50 rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal reveal-d1">
+          <div class="w-14 h-14 bg-warm-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"/></svg>
+          </div>
+          <h3 class="font-serif text-xl text-navy-900 mb-3">Lawyers &amp; Firms</h3>
+          <p class="text-sm text-navy-800/50 leading-relaxed mb-5">
+            Clients judge your competence by your website before they ever hear your argument.
+            Make the first impression count.
+          </p>
+          <ul class="space-y-2 text-sm text-navy-800/60">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Practice area pages</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Case study layouts</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Authority &amp; trust signals</li>
+          </ul>
+        </div>
+
+        <!-- Consultants -->
+        <div class="lift-card bg-warm-50 rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal reveal-d2">
+          <div class="w-14 h-14 bg-warm-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+          </div>
+          <h3 class="font-serif text-xl text-navy-900 mb-3">Consultants &amp; Coaches</h3>
+          <p class="text-sm text-navy-800/50 leading-relaxed mb-5">
+            Financial advisors, business coaches, therapists &mdash; you sell expertise.
+            Your site should radiate it from the first pixel.
+          </p>
+          <ul class="space-y-2 text-sm text-navy-800/60">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Credential highlights</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Testimonial sections</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Lead capture &amp; funnels</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="work" class="py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-16 reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-500 mb-4 block">Services</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-950 leading-tight mb-6">
+          What I deliver.
+        </h2>
+        <p class="text-lg text-navy-800/50 max-w-2xl">
+          Every project is built from scratch, by hand, to your exact needs.
+          No recycled templates. No one-size-fits-all.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <!-- Service 1 -->
+        <div class="lift-card bg-white rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 bg-navy-900 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl text-navy-900 mb-2">Rapid Landing Pages</h3>
+              <p class="text-sm text-navy-800/50 leading-relaxed mb-4">
+                Need to be online fast? I design and build high-impact single-page websites
+                that load instantly, look stunning on every device, and turn visitors into
+                clients. Perfect for a new practice or a fresh start.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Fast turnaround</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Mobile-first</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">SEO ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="lift-card bg-white rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal reveal-d1">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 bg-navy-900 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25L12 17.25 2.25 12l4.179-2.25m11.142 0l4.179 2.25L12 22.5 2.25 17.25l4.179-2.25"/></svg>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl text-navy-900 mb-2">Multi-Page Professional Sites</h3>
+              <p class="text-sm text-navy-800/50 leading-relaxed mb-4">
+                For established practices that need depth &mdash; dedicated pages for each
+                service, team bios, patient resources, and more. Built to grow with you
+                without ever needing a rebuild.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Scalable</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Content-managed</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Analytics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="lift-card bg-white rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 bg-navy-900 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/></svg>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl text-navy-900 mb-2">Performance &amp; SEO Overhaul</h3>
+              <p class="text-sm text-navy-800/50 leading-relaxed mb-4">
+                Already have a website that's slow, looks outdated, or doesn't show up on Google?
+                I audit the problem, fix it, and make sure your ideal clients can actually find you.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Speed optimization</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Google ranking</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Accessibility</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="lift-card bg-white rounded-2xl p-8 lg:p-10 border border-warm-200/80 reveal reveal-d1">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 bg-navy-900 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl text-navy-900 mb-2">Website Redesign</h3>
+              <p class="text-sm text-navy-800/50 leading-relaxed mb-4">
+                You've outgrown your current site. It looked fine in 2019 but now it feels dated.
+                I'll rebuild it from the ground up &mdash; modern design, faster code, better results.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Modern design</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Brand refresh</span>
+                <span class="text-xs text-navy-800/40 bg-warm-100 px-3 py-1 rounded-full">Content migration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOCIAL PROOF ===== -->
+  <section id="proof" class="py-24 lg:py-32 bg-navy-900 text-white relative grain overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-16 reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gold-400 mb-4 block">The Difference</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6">
+          Why professionals choose me<br>over agencies.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal">
+          <div class="text-3xl mb-4">01</div>
+          <h3 class="font-serif text-lg text-white mb-3">You talk to the person building it.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            No sales reps. No project managers relaying messages. You tell me what you need,
+            I build it. Simple.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal reveal-d1">
+          <div class="text-3xl mb-4">02</div>
+          <h3 class="font-serif text-lg text-white mb-3">I understand what "professional" means.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Your site won't have stock photos of people in headsets or generic corporate copy.
+            It'll feel like <em>you</em>.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal reveal-d2">
+          <div class="text-3xl mb-4">03</div>
+          <h3 class="font-serif text-lg text-white mb-3">It actually works on phones.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            70% of your potential clients are browsing on mobile.
+            I build mobile-first, so every tap, scroll, and form works flawlessly.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal">
+          <div class="text-3xl mb-4">04</div>
+          <h3 class="font-serif text-lg text-white mb-3">Speed that keeps visitors.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Every second your page takes to load, you lose 10% of visitors.
+            My sites load in under 2 seconds. Agencies can't say that.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal reveal-d1">
+          <div class="text-3xl mb-4">05</div>
+          <h3 class="font-serif text-lg text-white mb-3">No monthly "maintenance" hostage fees.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            You own your website. You own the code. I don't lock you into contracts
+            that charge you just to exist.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-8 reveal reveal-d2">
+          <div class="text-3xl mb-4">06</div>
+          <h3 class="font-serif text-lg text-white mb-3">Built by an engineer, not a template.</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Templates break. They're slow. They all look the same. Your site is written
+            line by line, to do exactly what you need.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glow orbs -->
+    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  </section>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center reveal">
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl text-navy-950 leading-tight mb-6">
+          Ready when you are.
+        </h2>
+        <p class="text-lg text-navy-800/50 leading-relaxed max-w-xl mx-auto">
+          If you're a professional who wants a website that matches the quality
+          of your work &mdash; let's have a conversation. No pitch decks, no pressure.
+          Just a chat about what you need.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t border-warm-200/60 py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="font-serif text-lg text-navy-900 block mb-1">Harshit Chhabra</span>
+          <span class="text-xs text-navy-800/40">Software Engineer &middot; Premium Web Development</span>
+        </div>
+        <p class="text-xs text-navy-800/30">&copy; 2026 &middot; Handcrafted, not templated.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JS ===== -->
+  <script>
+  (function() {
+    'use strict';
+
+    // ── Mobile menu ──
+    var menuOpen = false;
+    document.getElementById('mobile-btn').addEventListener('click', function() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-menu').classList.toggle('hidden', !menuOpen);
+      document.getElementById('menu-icon').setAttribute('d', menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
+    });
+    document.querySelectorAll('.mob-link').forEach(function(l) {
+      l.addEventListener('click', function() {
+        menuOpen = false;
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById('menu-icon').setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      });
+    });
+
+    // ── Scroll reveal ──
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
+
+    // ── Animated counters ──
+    var co = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting || entry.target.dataset.counted) return;
+        entry.target.dataset.counted = 'true';
+        var el = entry.target;
+        var target = parseInt(el.dataset.target);
+        var suffix = el.dataset.suffix || '';
+        var duration = 2000, startTime = null;
+        function anim(ts) {
+          if (!startTime) startTime = ts;
+          var p = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(eased * target) + suffix;
+          if (p < 1) requestAnimationFrame(anim);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(anim);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter-num').forEach(function(el) { co.observe(el); });
+
+  })();
+  </script>
+
+</body>
+</html>
